@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Administrador</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/login_admin.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <div class="left-side">
+      <img src="{{ url_for('static', filename='imagens/icone.png') }}" alt="Logo">
+    </div>
+    <div class="right-side">
+      <div class="login-box">
+        <h1>Login do Administrador</h1>
+        <form action="/login/admin" method="POST">
+          <input type="text" placeholder="Email do Administrador  " required />
+          <input type="password" placeholder="Senha" required />
+          <button type="submit">Entrar</button>
+        
+        </form>
+        
+    
+          
+      
+      </div>
+    </div>
+  </div>
+</body>
+</html>
