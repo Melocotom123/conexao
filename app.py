@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__, template_folder="frontend/templates", static_folder="frontend/static")
 app.secret_key = "chave_super_secreta"
 
+
 def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
@@ -12,6 +13,16 @@ def get_db_connection():
         password="Vergil1@",
         database="ATP3"
     )
+
+@app.route("/testar_conexao")
+def testar_conexao():
+    try:
+        conn = get_db_connection()
+        conn.close()
+        return "✅ Conexão com o banco funcionando!"
+    except Exception as e:
+        return f"❌ Erro: {e}"
+
 
 @app.route("/")
 def index():
@@ -31,13 +42,14 @@ def login_aluno():
         cursor.close()
         conn.close()
 
-        if aluno and check_password_hash(aluno['senha'], senha):
+        if aluno and aluno['senha'] == senha:
             session["usuario"] = aluno["nome"]
             session["tipo"] = "aluno"
             return redirect(url_for("dashboard_aluno"))
         else:
             flash("RA ou senha incorretos")
     return render_template("login_aluno.html")
+
 
 # --- LOGIN PROFESSOR ---
 @app.route("/login/professor", methods=["GET", "POST"])
@@ -53,13 +65,14 @@ def login_professor():
         cursor.close()
         conn.close()
 
-        if professor and check_password_hash(professor['senha'], senha):
+        if professor and professor['senha'] == senha:
             session["usuario"] = professor["nome"]
             session["tipo"] = "professor"
             return redirect(url_for("inicial_professor"))
         else:
             flash("Email ou senha incorretos")
     return render_template("login_professor.html")
+
 
 # --- LOGIN ADMIN ---
 @app.route("/login/admin", methods=["GET", "POST"])
@@ -75,13 +88,14 @@ def login_admin():
         cursor.close()
         conn.close()
 
-        if admin and check_password_hash(admin['senha'], senha):
+        if admin and admin['senha'] == senha:
             session["usuario"] = admin["nome"]
             session["tipo"] = "admin"
             return redirect(url_for("dashboard_admin"))
         else:
             flash("Email ou senha incorretos")
     return render_template("login_admin.html")
+
 
 @app.route("/dashboard_aluno")
 def dashboard_aluno():
