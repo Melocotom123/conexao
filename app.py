@@ -45,7 +45,7 @@ def login_aluno():
         if aluno and aluno['senha'] == senha:
             session["usuario"] = aluno["nome"]
             session["tipo"] = "aluno"
-            return redirect(url_for("dashboard_aluno"))
+            return redirect(url_for("inicial_aluno"))
         else:
             flash("RA ou senha incorretos")
     return render_template("login_aluno.html")
@@ -96,12 +96,11 @@ def login_admin():
             flash("Email ou senha incorretos")
     return render_template("login_admin.html")
 
-
-@app.route("/dashboard_aluno")
-def dashboard_aluno():
+@app.route("/inicial_aluno")
+def inicial_aluno():
     if session.get("tipo") != "aluno":
         return redirect(url_for("index"))
-    return f"<h2>Bem-vindo, {session['usuario']} (aluno)</h2>"
+    return render_template("inicial_aluno.html", nome=session["usuario"])
 
 @app.route("/dashboard_admin")
 def dashboard_admin():
