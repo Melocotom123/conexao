@@ -132,11 +132,18 @@ body {
     color: black;
   }
 
+
+
+
+
 .cards {
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap; /* quebra para a linha de baixo se não couber */
+  gap: 20px;        /* espaço entre os cards */
+  padding: 20px;
+  justify-content: center;
 }
+
 
 .card1{
     width: 260px;
@@ -245,4 +252,136 @@ body {
     border-radius: 10px;
 }
 
-/*<-- mover o botão para cima e para baixo -5px e a sombra preta-->
+
+
+.card3{
+    width: 260px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card3 p{
+    background-color: #d3d3d3cc;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+    margin: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+ 
+
+
+.botao3 {
+    background-color: #a29bfe;
+    border: none;
+    padding: 15px;
+    color: #555555;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: background-color 0.3s;
+  
+}
+
+.span, .conteudo {
+    margin-right: 180px;
+    font-size: 10px;
+    white-space: nowrap;
+    color: #ffff;
+}
+
+.botao3 span:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgb(121, 120, 120);
+    border: 10px;
+}
+
+
+
+.card4 p{
+    background-color: #d3d3d3cc;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+    margin: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+ 
+
+
+.botao4  {
+    background-color: #a29bfe;
+    border: none;
+    padding: 15px;
+    color: #555555;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: background-color 0.3s;
+  
+}
+
+.span, .conteudo {
+    margin-right: 180px;
+    font-size: 10px;
+    white-space: nowrap;
+    color: #ffff;
+}
+
+.botao4 span:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgb(121, 120, 120);
+    border: 50px;
+}
+
+
+.card5 p{
+    background-color: #d3d3d3cc;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+    margin: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+ 
+
+
+.botao5  {
+    background-color: #FFD600;
+    border: none;
+    padding: 15px;
+    color: #555555;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: background-color 0.3s;
+  
+}
+
+.span, .conteudo {
+    margin-right: 180px;
+    font-size: 10px;
+    white-space: nowrap;
+    color: #ffff;
+}
+
+.botao5 span:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgb(121, 120, 120);
+    border: 10px;
+}

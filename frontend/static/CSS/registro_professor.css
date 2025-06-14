@@ -8,7 +8,6 @@
   body, html {
     height: 0;
     width: 0;
-    height: 0;
 
   }
   
@@ -24,7 +23,7 @@
     left: 0;
     top: 0;
     height: 100vh;
-    width: 300px;
+    width: 250px;
     background-color: #4169C1; 
     display: flex;
     padding: 20px;
@@ -53,7 +52,7 @@ body {
   width: 250px;
   background-color: #3b5cb8;
   color: white;
-  padding: 150px 0px;
+  padding: 20px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -112,9 +111,17 @@ body {
 }
 
 
+.linha-branca {
+  width: 90%;
+  height: 1px;
+  background-color: white;
+  margin: 20px auto;
+  border: 1px solid 
+}
+
 .right-side {
     flex: 1;
-    margin-left: 300px;
+    margin-left: 250px;
     margin-bottom: 20px;
     background-size: cover;
     display: flex;
@@ -125,117 +132,106 @@ body {
     color: black;
   }
 
-.cards {
-     display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
+.card1 {
+  width: 260px;
+  height: 260px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+ 
 }
 
-.card1{
-    width: 260px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+.card-top1 {
+  background-color: #dcdcdc;
+  padding: 20px;
 }
 
+.card-top1 h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
 
+.card-top1 p {
+  margin: 5px 0 0 0;
+  font-size: 19px;
+  font-weight: bold;
+}
 
-.card1 p{
-    background-color: #d3d3d3cc;
-    padding: 20px;
-    font-weight: bold;
-    font-size: 18px;
-    color: black;
-    margin: 0;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+.card-bottom1 {
+  background-color: #a29bfe; /* Azul */
+  padding: 15px;
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.card-bottom1 a {
+ margin-top: 10px;
+  background-color: #6c5ce7;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.card-bottom1 a:hover {
+  background-color: #9689f8;
 }
  
 
-
-.botao1  {
-    background-color: #F5CC17;
-    border: none;
-    padding: 15px;
-    color: #555555;
-    font-size: 16px;
-    cursor: pointer;
-    width: 100%;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    transition: background-color 0.3s;
-  
+.card2 {
+  width: 260px;
+  height: 260px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin: 10px;
 }
 
-.span, .conteudo {
-    margin-right: 180px;
-    font-size: 10px;
-    white-space: nowrap;
-    color: #ffff;
+.card-top2 {
+  background-color: #dcdcdc;
+  padding: 20px;
 }
 
-.botao1 span:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgb(121, 120, 120);
-    border: 50px;
+.card-top2 h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-
-
-
-
-
-
-.card2{
-    width: 260px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+.card-top2 p {
+  margin: 5px 0 0 0;
+  font-size: 18px;
+  font-weight: bold;
 }
 
-
-.card2 p{
-    background-color: #d3d3d3cc;
-    padding: 20px;
-    font-weight: bold;
-    font-size: 18px;
-    color: black;
-    margin: 0;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
- 
-
-
-.botao2  {
-    background-color: #df81fc;
-    border: none;
-    padding: 15px;
-    color: #555555;
-    font-size: 16px;
-    cursor: pointer;
-    width: 100%;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    transition: background-color 0.3s;
-  
+.card-bottom2 {
+  background-color: #fab1a0; 
+  padding: 15px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
-.span, .conteudo {
-    margin-right: 180px;
-    font-size: 10px;
-    white-space: nowrap;
+.card-bottom2 a {
+  margin-top: 10px;
+  background-color: #ff7675;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
-
-.botao2 span:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    border-radius: 10px;
+.card-bottom2 a:hover {
+  background-color: #ffb7a7;
 }
-
-/*<-- mover o botão para cima e para baixo -5px e a sombra preta-->
