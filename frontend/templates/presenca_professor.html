@@ -62,7 +62,7 @@
    
    
    
-<div class="right-side">
+  <div class="right-side">
   <div class="cards">
     <div class="card1">
       <div class="icon-circle">
@@ -72,7 +72,7 @@
     </div>
     <div class="title">BACK-END</div>
     <div class="subtitle">3A-EM-TARDE-2025</div><br>
-    <button class="botao1" onclick="location.href='https://educacaoprofissional.educacao.sp.gov.br/course/view.php?id=296'">Iniciar presença</button>
+    <button class="botao1" onclick="location.href='/reconhecimento_professor'">Iniciar presença</button>
     </div>
   </div>
    
@@ -85,15 +85,46 @@
       </div>
           <div class="title2">MOBILE</div>
           <div class="subtitle2">3B-EM-TARDE-2025</div><br>
-            <button class="botao2" onclick="location.href='https://educacaoprofissional.educacao.sp.gov.br/course/view.php?id=296'">Iniciar presença</button>
-         </div>
-       </div>
-      
-      </div>
+    <button class="botao2" id="startRecognitionBtn">Iniciar presença</button>
     
-    </div>
+  </div>
+  <div id="recognitionContainer" style="display:none; text-align:center; margin-top:20px;">
+    <video id="video" width="100%" height="auto" autoplay muted style="border: 2px solid #333; border-radius: 8px; max-width: 600px; margin: 0 auto; display: block;"></video>
+    <p id="resultado" style="margin-top: 10px; font-weight: bold;">Aguardando reconhecimento...</p>
   </div>
 </div>
+<div id="recognitionContainer" style="display:none; text-align:center; margin-top:20px;">
+  <video id="video" width="100%" height="auto" autoplay muted style="border: 2px solid #333; border-radius: 8px; max-width: 600px; margin: 0 auto; display: block;"></video>
+  <p id="resultado" style="margin-top: 10px; font-weight: bold;">Aguardando reconhecimento...</p>
+</div>
+<div id="recognitionContainer" style="display:none; text-align:center; margin-top:20px;">
+  <video id="video" width="100%" height="auto" autoplay muted style="border: 2px solid #333; border-radius: 8px; max-width: 600px; margin: 0 auto; display: block;"></video>
+  <p id="resultado" style="margin-top: 10px; font-weight: bold;">Aguardando reconhecimento...</p>
+</div>
+
+  <div id="recognitionContainer" style="display:none; text-align:center; margin-top:20px;">
+    <video id="video" width="100%" height="auto" autoplay muted style="border: 2px solid #333; border-radius: 8px; max-width: 600px; margin: 0 auto; display: block;"></video>
+    <p id="resultado" style="margin-top: 10px; font-weight: bold;">Aguardando reconhecimento...</p>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script>
+  const startBtn = document.getElementById('startRecognitionBtn');
+  const recognitionContainer = document.getElementById('recognitionContainer');
+
+  startBtn.addEventListener('click', () => {
+    recognitionContainer.style.display = 'block';
+    startBtn.style.display = 'none';
+    startRecognition();
+  });
+
+  function startRecognition() {
+    if (typeof window.startCameraRecognition === 'function') {
+      window.startCameraRecognition();
+    }
+  }
+</script>
     
     
 </body>
