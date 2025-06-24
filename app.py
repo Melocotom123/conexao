@@ -1,25 +1,28 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-import mysql.connector
-from werkzeug.security import generate_password_hash, check_password_hash
+import pymysql
 
-app = Flask(__name__, template_folder="frontend/templates", static_folder="frontend/static")
+app = Flask(__name__, template_folder="frontend/templates",
+            static_folder="frontend/static")
 app.secret_key = "chave_super_secreta"
 
 
+# Função de conexão com o banco usando PyMySQL
 def get_db_connection():
-    return mysql.connector.connect(
+    return pymysql.connect(
         host="localhost",
         user="root",
-        password="password",
-        database="ATP3"
+        password="Vergil1@",
+        database="ATP3",
+        cursorclass=pymysql.cursors.DictCursor
     )
+
 
 @app.route("/testar_conexao")
 def testar_conexao():
     try:
         conn = get_db_connection()
         conn.close()
-        return "✅ Conexão com o banco funcionando!"
+        return "✅ Conexão com o banco funcionando via PyMySQL!"
     except Exception as e:
         return f"❌ Erro: {e}"
 
@@ -27,6 +30,7 @@ def testar_conexao():
 @app.route("/")
 def index():
     return render_template("index.html")
+
 
 # --- LOGIN ALUNO ---
 @app.route("/login/aluno", methods=["GET", "POST"])
@@ -36,7 +40,7 @@ def login_aluno():
         senha = request.form["senha"]
 
         conn = get_db_connection()
-        cursor = conn.cursor(dictionary=True)
+        cursor = conn.cursor()
         cursor.execute("SELECT * FROM Alunos WHERE ra = %s", (ra,))
         aluno = cursor.fetchone()
         cursor.close()
@@ -59,7 +63,7 @@ def login_professor():
         senha = request.form["senha"]
 
         conn = get_db_connection()
-        cursor = conn.cursor(dictionary=True)
+        cursor = conn.cursor()
         cursor.execute("SELECT * FROM Professores WHERE email = %s", (email,))
         professor = cursor.fetchone()
         cursor.close()
@@ -82,8 +86,9 @@ def login_admin():
         senha = request.form["senha"]
 
         conn = get_db_connection()
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("SELECT * FROM Administradores WHERE email = %s", (email,))
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT * FROM Administradores WHERE email = %s", (email,))
         admin = cursor.fetchone()
         cursor.close()
         conn.close()
@@ -96,11 +101,13 @@ def login_admin():
             flash("Email ou senha incorretos")
     return render_template("login_admin.html")
 
+
 @app.route("/inicial_aluno")
 def inicial_aluno():
     if session.get("tipo") != "aluno":
         return redirect(url_for("index"))
     return render_template("inicial_aluno.html", nome=session["usuario"])
+
 
 @app.route("/dashboard_admin")
 def dashboard_admin():
@@ -108,11 +115,13 @@ def dashboard_admin():
         return redirect(url_for("index"))
     return f"<h2>Bem-vindo, {session['usuario']} (admin)</h2>"
 
+
 @app.route("/inicial_professor")
 def inicial_professor():
     if session.get("tipo") != "professor":
         return redirect(url_for("index"))
     return render_template("inicial_professor.html", nome=session["usuario"])
+
 
 @app.route("/registro_professor")
 def registro_professor():
@@ -120,17 +129,31 @@ def registro_professor():
         return redirect(url_for("index"))
     return render_template("registro_professor.html", nome=session["usuario"])
 
+
 @app.route("/presenca_professor")
 def presenca_professor():
     if session.get("tipo") != "professor":
         return redirect(url_for("index"))
     return render_template("presenca_professor.html", nome=session["usuario"])
 
+
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for("index"))
 
+
+@app.route("/registro_aluno")
+def registro_aluno():
+    if session.get("tipo") != "aluno":
+        return redirect(url_for("index"))
+    return render_template("registro_aluno.html", nome=session.get("usuario"))
+
+@app.route("/presenca_aluno")
+def presenca_aluno():
+    if session.get("tipo") != "aluno":
+        return redirect(url_for("index"))
+    return render_template("presenca_aluno.html", nome=session.get("usuario"))
 
 if __name__ == "__main__":
     app.run(debug=True)

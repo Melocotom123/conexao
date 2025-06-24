@@ -24,7 +24,7 @@
     top: 0;
     height: 100vh;
     width: 250px;
-    background-color: #4169C1; 
+    background-color: #65A2E9; 
     display: flex;
     padding: 20px;
     justify-content: center;
@@ -50,7 +50,7 @@ body {
 
 .sidebar {
   width: 250px;
-  background-color: #3b5cb8;
+  background-color: #639bdb;
   color: white;
   padding: 20px 10px;
   display: flex;
@@ -95,7 +95,7 @@ body {
 .menu a.active,
 .menu a:hover,
 .logout:hover {
-  background-color: #2a4aa0;
+  background-color: #639bdb;
   border-radius: 8px;
 }
 
@@ -133,7 +133,7 @@ body {
   gap: 20px;
 }
 
-/* Cards base */
+
 .card {
   width: 260px;
   height: 260px;
@@ -143,7 +143,6 @@ body {
 }
 
 
-/* Topo comum aos dois */
 .card-top {
   background-color: #dcdcdc;
   padding: 20px;
@@ -161,7 +160,7 @@ body {
   font-weight: bold;
 }
 
-/* Parte inferior com cor diferente por card */
+
 .card-bottom {
   padding: 15px;
   color: white;
@@ -172,7 +171,7 @@ body {
 
 .card-bottom a {
   margin-top: 10px;
-  background-color: #6c5ce7;
+  background-color: #a41fc9;
   color: white;
   padding: 10px 20px;
   border-radius: 10px;
@@ -182,22 +181,22 @@ body {
 }
 
 .card-bottom a:hover {
-  background-color: #9689f8;
+  background-color: #c765e3;
 }
 
 /* Cores específicas */
-.card-bottom.azul {
-  background-color: #a29bfe;
+.card-bottom.roxo {
+  background-color: #c057de;
 }
 
-.card-bottom.rosa {
-  background-color: #FF6A4D;
+.card-bottom.verde {
+  background-color: #1dd887;
 }
 
-.card-bottom.rosa a {
-  background-color: #FF2400;
+.card-bottom.verde a {
+  background-color: #4ce8a5;
 }
 
-.card-bottom.rosa a:hover {
-  background-color: #ed6448;
+.card-bottom.verde a:hover {
+  background-color: #4af7ac;
 }
