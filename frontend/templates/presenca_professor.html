@@ -89,25 +89,11 @@
     
   </div>
   <div id="recognitionContainer" style="display:none; text-align:center; margin-top:20px;">
-    <video id="video" width="100%" height="auto" autoplay muted style="border: 2px solid #333; border-radius: 8px; max-width: 600px; margin: 0 auto; display: block;"></video>
-    <p id="resultado" style="margin-top: 10px; font-weight: bold;">Aguardando reconhecimento...</p>
-  </div>
-</div>
-<div id="recognitionContainer" style="display:none; text-align:center; margin-top:20px;">
-  <video id="video" width="100%" height="auto" autoplay muted style="border: 2px solid #333; border-radius: 8px; max-width: 600px; margin: 0 auto; display: block;"></video>
-  <p id="resultado" style="margin-top: 10px; font-weight: bold;">Aguardando reconhecimento...</p>
-</div>
-<div id="recognitionContainer" style="display:none; text-align:center; margin-top:20px;">
-  <video id="video" width="100%" height="auto" autoplay muted style="border: 2px solid #333; border-radius: 8px; max-width: 600px; margin: 0 auto; display: block;"></video>
-  <p id="resultado" style="margin-top: 10px; font-weight: bold;">Aguardando reconhecimento...</p>
-</div>
-
-  <div id="recognitionContainer" style="display:none; text-align:center; margin-top:20px;">
-    <video id="video" width="100%" height="auto" autoplay muted style="border: 2px solid #333; border-radius: 8px; max-width: 600px; margin: 0 auto; display: block;"></video>
-    <p id="resultado" style="margin-top: 10px; font-weight: bold;">Aguardando reconhecimento...</p>
-  </div>
-</div>
-
+  <video id="video" width="640" height="480" autoplay></video>
+  <p id="resultado">Aguardando...</p>
+  <script src="/static/script.js"></script>
+</body>
+</html>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 <script>
   const startBtn = document.getElementById('startRecognitionBtn');
