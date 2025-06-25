@@ -11,10 +11,10 @@ import mediapipe as mp
 import time
 
 # --- CONFIGURAÇÕES ---
-DIR_FOTOS = r"C:\Users\Brigadeiro\Desktop\ATP\ATP3\Fotos"
-DIR_FACES = r"C:\Users\Brigadeiro\Desktop\ATP\ATP3\Faces"
-DIR_TESTE = r"C:\Users\Brigadeiro\Desktop\ATP\ATP3\Teste"
-DIR_RESULTADO = r"C:\Users\Brigadeiro\Desktop\ATP\ATP3\Resultados"
+DIR_FOTOS = "C:\\Users\\lucas\\OneDrive\\Desktop\\ATP\\Fotos\\"
+DIR_FACES = "C:\\Users\\lucas\\OneDrive\\Desktop\\ATP\\Faces\\"
+DIR_TESTE = "C:\\Users\\lucas\\OneDrive\\Desktop\\ATP\\Teste\\"
+DIR_RESULTADO = "C:\\Users\\lucas\\OneDrive\\Desktop\\ATP\\Resultados\\"
 CAMINHO_MODELO = "modelo_reconhecimento.pkl"
 
 # --- INICIALIZA DETECTORES ---

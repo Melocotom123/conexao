@@ -6,6 +6,7 @@ import face_recognition
 import joblib
 from base64 import b64decode
 
+
 app = Flask(__name__, template_folder="frontend/templates", static_folder="frontend/static")
 app.secret_key = "chave_super_secreta"
 
@@ -45,9 +46,9 @@ def testar_conexao():
     try:
         conn = get_db_connection()
         conn.close()
-        return "✅ Conexão com o banco funcionando via PyMySQL!"
+        return None
     except Exception as e:
-        return f"❌ Erro: {e}"
+        return None
 
 # --- Página inicial ---
 @app.route("/")

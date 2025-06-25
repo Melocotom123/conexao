@@ -45,9 +45,6 @@ function recognizeLoop() {
     } else {
       resultado.textContent = data.map(r => `${r.nome} (${(r.probabilidade * 100).toFixed(0)}%)`).join(', ');
     }
-  })
-  .catch(err => {
-    resultado.textContent = 'Erro no reconhecimento: ' + err;
   });
 
   setTimeout(recognizeLoop, 2000);
