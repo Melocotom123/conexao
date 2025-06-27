@@ -11,6 +11,7 @@
     <h1>Auto Presença Tecnológica Orientada</h1>
     <p>Selecione seu perfil para continuar:</p>
     <div class="botoes">
+      <!-- INDEX FICA COM "ERRO" por conta da rota que é pegada assim no flask.  -->
       <button class="botao" onclick="window.location.href='{{ url_for('login_professor') }}'">Professor</button>
       <button class="botao" onclick="window.location.href='{{ url_for('login_aluno') }}'">Aluno</button>
       <button class="botao" onclick="window.location.href='{{ url_for('login_admin') }}'">Administrador</button>

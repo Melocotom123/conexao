@@ -1,3 +1,4 @@
+#importa todas as bibliotecas que serão utilizadas no código
 import face_recognition
 from sklearn import svm
 from os import listdir, makedirs
@@ -6,25 +7,27 @@ import joblib
 from PIL import Image
 from numpy import asarray
 import cv2
-import os
-import mediapipe as mp
+import os #as = apelido
+import mediapipe as mp #Rede Neural Convolucional 
 import time
 
-# --- CONFIGURAÇÕES ---
-DIR_FOTOS = "C:\\Users\\lucas\\OneDrive\\Desktop\\ATP\\Fotos\\"
-DIR_FACES = "C:\\Users\\lucas\\OneDrive\\Desktop\\ATP\\Faces\\"
-DIR_TESTE = "C:\\Users\\lucas\\OneDrive\\Desktop\\ATP\\Teste\\"
-DIR_RESULTADO = "C:\\Users\\lucas\\OneDrive\\Desktop\\ATP\\Resultados\\"
+# --- CONFIGURAÇÕES de diretorios que estão armazenados localmente, no disco ridigo do pc---
+DIR_FOTOS = r"C:\\Users\\lucas\\OneDrive\\Desktop\\ATP\\Fotos\\"
+DIR_FACES = r"C:\\Users\\lucas\\OneDrive\\Desktop\\ATP\\Faces\\"
+DIR_TESTE = r"C:\\Users\\lucas\\OneDrive\\Desktop\\ATP\\Teste\\"
+DIR_RESULTADO = r"C:\\Users\\lucas\\OneDrive\\Desktop\\ATP\\Resultados\\"
+
+#não é um diretorio, pq é o modelo que está sendo criado quando roda esse codigo.
 CAMINHO_MODELO = "modelo_reconhecimento.pkl"
 
-# --- INICIALIZA DETECTORES ---
+# --- INICIALIZA DETECTORES de pessoas 
 mp_face_detection = mp.solutions.face_detection
 detector_face = mp_face_detection.FaceDetection(model_selection=1, min_detection_confidence=0.5)
 
 mp_face_mesh = mp.solutions.face_mesh
 detector_malha = mp_face_mesh.FaceMesh(refine_landmarks=True, max_num_faces=1, min_detection_confidence=0.5)
 
-# --- EXTRAÇÃO DE FACE COM MEDIAPIPE ---
+# --- EXTRAÇÃO DE FACE COM MEDIAPIPE, configura a resolução da face por 180x180---
 def extrair_face(arquivo, size=(180, 180)):
     img = Image.open(arquivo).convert('RGB')
     vetor = asarray(img)
@@ -34,7 +37,7 @@ def extrair_face(arquivo, size=(180, 180)):
     if not resultado.detections:
         print(f"[AVISO] Nenhuma face detectada em: {arquivo}")
         return None
-
+    #configuração de retangulo facial:  
     bbox = resultado.detections[0].location_data.relative_bounding_box
     h, w, _ = vetor.shape
     x1 = int(bbox.xmin * w)
@@ -47,14 +50,22 @@ def extrair_face(arquivo, size=(180, 180)):
     face = vetor[y1:y2, x1:x2]
     image = Image.fromarray(face).resize(size)
     return image
+# cria vetores facias com base nas coordenadas do rosto 👆
 
+
+#flipa a imagem -- inverte a imagem 
 def flip_image(image):
     return image.transpose(Image.FLIP_LEFT_RIGHT)
 
+
+#carregar fotos das pastas e sub_pastas 
+#pasta = src
+#subpasta = target
 def load_fotos(diretorio_src, diretorio_target):
     if not exists(diretorio_target):
         makedirs(diretorio_target)
 
+    #para cada arquivo na lista de pastas entre e procure o arquivo jpeg, png e jpg e flipa elas e salva 
     for filename in listdir(diretorio_src):
         path = join(diretorio_src, filename)
         path_tg = join(diretorio_target, filename)
@@ -69,7 +80,12 @@ def load_fotos(diretorio_src, diretorio_target):
             flip = flip_image(face)
             flip.save(path_tg_flip)
 
+#carrega o diretorio
+
+#pasta = src 
+#subpasta = target
 def carregar_dir(diretorio_src, diretorio_target):
+    #para cada subpasta em lista de pastas(pasta) 
     for subdir in listdir(diretorio_src):
         path = join(diretorio_src, subdir)
         path_tg = join(diretorio_target, subdir)
@@ -82,6 +98,7 @@ def carregar_dir(diretorio_src, diretorio_target):
 
         load_fotos(path, path_tg)
 
+#treina o reconhecedor de reconhecimento facial
 def treinar_reconhecedor(diretorio_faces, caminho_modelo=CAMINHO_MODELO):
     encodings = []
     nomes = []
@@ -108,7 +125,9 @@ def treinar_reconhecedor(diretorio_faces, caminho_modelo=CAMINHO_MODELO):
     joblib.dump(clf, caminho_modelo)
     print(f"[INFO] Modelo salvo em: {caminho_modelo}")
 
+#desenha os resultados com base na probalidade descrita acima
 def desenhar_resultados(imagem_bgr, resultados):
+    #para cada probalidade top rigth bottom e left = quadrado de reconhecer face nos resultados
     for nome, prob, (top, right, bottom, left) in resultados:
         cor = (0, 255, 0) if prob > 0.80 else (0, 0, 255)
         cv2.rectangle(imagem_bgr, (left, top), (right, bottom), cor, 2)
@@ -116,9 +135,11 @@ def desenhar_resultados(imagem_bgr, resultados):
         cv2.putText(imagem_bgr, texto, (left, top - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, cor, 2)
     return imagem_bgr
 
+
+#reconhece o caminho modelo e faz o modelo reconhecimento
 def reconhecer_em_diretorio(diretorio_testes, caminho_modelo=CAMINHO_MODELO, salvar_em=None):
     clf = joblib.load(caminho_modelo)
-
+#PARA CADA IMAGEM DE NOME EM LISTAS DE DIRETORIOS
     for nome_img in listdir(diretorio_testes):
         caminho_img = join(diretorio_testes, nome_img)
         if not caminho_img.lower().endswith(('.jpg', '.jpeg', '.png')):
@@ -151,7 +172,7 @@ def reconhecer_em_diretorio(diretorio_testes, caminho_modelo=CAMINHO_MODELO, sal
 
     cv2.destroyAllWindows()
 
-# --- VERIFICAÇÃO DE VIVACIDADE (piscadas) ---
+# --- VERIFICAÇÃO DE VIVACIDADE (piscadas) --- (isso aq é apenas algo teste não leve em consideração, mas isso aqui detecta piscadas no codigo que vamos apresentar essa função não existe)
 def detectar_vivacidade(frame):
     rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     resultado = detector_malha.process(rgb)
